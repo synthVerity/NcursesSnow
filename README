@@ -1,0 +1,6 @@
+# NCurses Snow #
+
+Short little ncurses graphical program that simulates snowfall.
+Could be used as a screensaver. Plan to add that capability later.
+Compile with 'gcc snow.c -lncurses' with '-o' option you want.
+Do what you want with it, as I made this just for fun.
