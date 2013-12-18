@@ -19,7 +19,7 @@ int main(void)
 	int i;
 	int running = 1;
 	int maxY, maxX;
-	char piece = '#';
+	char piece = '*';
 	struct snow snowflakes[SNOWFLAKES];
 
 	// Seed random
