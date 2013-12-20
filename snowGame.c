@@ -107,6 +107,8 @@ int main(void)
 
 		}
 
+		// If a snowflake appears above the game piece,
+		// the computer moves it out of the way. Should be a perfect win
 		if(AIplayer)
 		{
 			for(i = 0; i < SNOWFLAKES; i++)
