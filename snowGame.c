@@ -17,7 +17,7 @@ int main(void)
 {
 	// All the variables used, including the array of snowflakes
 	int i;
-	int running = 1;
+	int running = 1, AIplayer = 0;
 	int maxY, maxX;
 	int playX, playY;
 	char piece = '*';
@@ -85,6 +85,10 @@ int main(void)
 				running = 0;
 				break;
 
+			case KEY_F(2):
+				AIplayer = 1;
+				break;
+
 			case KEY_LEFT:
 				if(playX <= 0)
 					break;
@@ -103,6 +107,18 @@ int main(void)
 
 		}
 
+		if(AIplayer)
+		{
+			for(i = 0; i < SNOWFLAKES; i++)
+			{
+				if(snowflakes[i].x == playX && playX > 0)
+					playX--;
+				else if(snowflakes[i].x == playX)
+					playX++;
+			}
+		}
+
+		// Collision check for snowflake
 		for(i = 0; i < SNOWFLAKES; i++)
 		{
 			if(playX == snowflakes[i].x && playY == snowflakes[i].y - 1)
