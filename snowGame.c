@@ -3,8 +3,6 @@
 #include <time.h>
 #include <ncurses.h>
 
-#define SNOWFLAKES 50
-
 // Struct that holds placement information for each snowflake
 struct snow
 {
@@ -13,8 +11,9 @@ struct snow
 };
 
 // Obvious main is obvious
-int main(void)
+int main(int argc, char *argv[])
 {
+
 	// All the variables used, including the array of snowflakes
 	int i;
 	int running = 1, AIplayer = 0;
@@ -22,7 +21,19 @@ int main(void)
 	int playX, playY;
 	char piece = '*';
 	char player = '#';
-	struct snow snowflakes[SNOWFLAKES];
+	int numSnowflakes;
+
+	// Set the number of snowflakes used in the game
+	if(argc > 1)
+	{
+		numSnowflakes = atoi(argv[1]);
+	}
+	else
+	{
+		numSnowflakes = 50;
+	}
+
+	struct snow snowflakes[numSnowflakes];
 
 	// Seed random
 	srand(time(NULL));
@@ -42,7 +53,7 @@ int main(void)
 	playX = maxX / 2;
 
 	// Initialize the snowflake locations
-	for(i = 0; i < SNOWFLAKES; i++)
+	for(i = 0; i < numSnowflakes; i++)
 	{
 		snowflakes[i].x = rand() % maxX;
 		snowflakes[i].y = rand() % maxY;
@@ -60,7 +71,7 @@ int main(void)
 		}
 
 		// Output of the individual snowflakes
-		for(i = 0; i < SNOWFLAKES; i++)
+		for(i = 0; i < numSnowflakes; i++)
 		{
 			mvprintw(snowflakes[i].y, snowflakes[i].x, "%c", piece);
 
@@ -111,7 +122,7 @@ int main(void)
 		// the computer moves it out of the way. Should be a perfect win
 		if(AIplayer)
 		{
-			for(i = 0; i < SNOWFLAKES; i++)
+			for(i = 0; i < numSnowflakes; i++)
 			{
 				if(snowflakes[i].x == playX && playX > 0)
 					playX--;
@@ -121,7 +132,7 @@ int main(void)
 		}
 
 		// Collision check for snowflake
-		for(i = 0; i < SNOWFLAKES; i++)
+		for(i = 0; i < numSnowflakes; i++)
 		{
 			if(playX == snowflakes[i].x && playY == snowflakes[i].y - 1)
 			{
